@@ -2025,14 +2025,26 @@
   width: auto;
   max-height: 320px;
   overflow-y: auto;
-  padding: 5px;
-  scrollbar-width: none;
+  padding: 5px 3px 5px 5px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-light, rgba(255, 255, 255, 0.2)) transparent;
 }
 
 .dropdown-select-menu::-webkit-scrollbar {
-  display: none;
-  width: 0;
-  height: 0;
+  width: 5px;
+}
+
+.dropdown-select-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dropdown-select-menu::-webkit-scrollbar-thumb {
+  background: var(--border-light, rgba(255, 255, 255, 0.2));
+  border-radius: 999px;
+}
+
+.dropdown-select-menu::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted, rgba(255, 255, 255, 0.35));
 }
 
 .dropdown-select-menu button {
