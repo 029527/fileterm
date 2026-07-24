@@ -119,19 +119,26 @@ export function DropdownSelect({
     const viewportMargin = 8
     const top = rect.bottom + 4
     const minWidth = menuWidth === 'trigger' ? rect.width : menuRect.width
-    const actualWidth = Math.max(minWidth, menuRect.width)
-    const maxLeft = Math.max(viewportMargin, window.innerWidth - actualWidth - viewportMargin)
     const shouldAlignRight =
-      align === 'right' || (align === 'auto' && rect.left + actualWidth > window.innerWidth - viewportMargin)
-    const idealLeft = shouldAlignRight ? rect.right - actualWidth : rect.left
-    const left = Math.min(maxLeft, Math.max(viewportMargin, idealLeft))
+      align === 'right' || (align === 'auto' && rect.left + menuRect.width > window.innerWidth - viewportMargin)
     const maxTop = Math.max(viewportMargin, window.innerHeight - menuRect.height - viewportMargin)
 
-    setResolvedStyle({
-      left,
-      top: Math.min(maxTop, top),
-      minWidth
-    })
+    if (shouldAlignRight) {
+      setResolvedStyle({
+        right: Math.max(viewportMargin, window.innerWidth - rect.right),
+        left: 'auto',
+        top: Math.min(maxTop, top),
+        minWidth
+      })
+    } else {
+      const maxLeft = Math.max(viewportMargin, window.innerWidth - menuRect.width - viewportMargin)
+      setResolvedStyle({
+        left: Math.min(maxLeft, Math.max(viewportMargin, rect.left)),
+        right: 'auto',
+        top: Math.min(maxTop, top),
+        minWidth
+      })
+    }
   }, [open, options, menuWidth, align])
 
   const handleSelect = (optionValue: string) => {
