@@ -119,10 +119,11 @@ export function DropdownSelect({
     const viewportMargin = 8
     const top = rect.bottom + 4
     const minWidth = menuWidth === 'trigger' ? rect.width : menuRect.width
-    const maxLeft = Math.max(viewportMargin, window.innerWidth - minWidth - viewportMargin)
+    const actualWidth = Math.max(minWidth, menuRect.width)
+    const maxLeft = Math.max(viewportMargin, window.innerWidth - actualWidth - viewportMargin)
     const shouldAlignRight =
-      align === 'right' || (align === 'auto' && rect.left + minWidth > window.innerWidth - viewportMargin)
-    const idealLeft = shouldAlignRight ? rect.right - minWidth : rect.left
+      align === 'right' || (align === 'auto' && rect.left + actualWidth > window.innerWidth - viewportMargin)
+    const idealLeft = shouldAlignRight ? rect.right - actualWidth : rect.left
     const left = Math.min(maxLeft, Math.max(viewportMargin, idealLeft))
     const maxTop = Math.max(viewportMargin, window.innerHeight - menuRect.height - viewportMargin)
 
