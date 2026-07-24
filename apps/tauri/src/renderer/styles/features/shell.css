@@ -501,19 +501,27 @@
 
 .network-select {
   flex: none;
-  min-width: 112px;
-  max-width: 132px;
-  height: 28px;
-  padding: 0 8px;
+  min-width: 0;
+  width: clamp(58px, 38%, 92px);
+  max-width: 92px;
+  height: 22px;
+  min-height: 22px;
+  padding: 0 6px;
   border: 1px solid var(--border-light);
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 10px;
+  font-weight: 400;
+  box-sizing: border-box;
 }
 
 /* system sidebar 的 network-select trigger 在 Windows/Linux 上保持自定义下拉菜单，
-   仅将箭头调整为更贴近原生 <select> 的 subtle 外观。 */
+   对其高度、字号与内边距做跨平台对齐。 */
 .system-sidebar-layout .network-select.dropdown-select-trigger {
-  padding-right: 6px;
+  min-height: 22px;
+  height: 22px;
+  padding: 0 6px;
+  font-size: 10px;
+  gap: 4px;
 }
 
 .system-sidebar-layout .network-select.dropdown-select-trigger .dropdown-select-arrow {
@@ -527,6 +535,8 @@
   position: relative;
   display: inline-flex;
   align-items: center;
+  min-height: 22px;
+  height: 22px;
   box-sizing: border-box;
 }
 
