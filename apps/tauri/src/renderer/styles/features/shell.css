@@ -501,13 +501,71 @@
 
 .network-select {
   flex: none;
-  min-width: 112px;
-  max-width: 132px;
-  height: 28px;
-  padding: 0 8px;
+  min-width: 0;
+  width: clamp(58px, 38%, 92px);
+  max-width: 92px;
+  height: 22px;
+  min-height: 22px;
+  padding: 0 6px;
   border: 1px solid var(--border-light);
   border-radius: var(--radius-sm);
+  font-size: 10px;
+  font-weight: 400;
+  box-sizing: border-box;
+}
+
+/* system sidebar 的 network-select trigger 在 Windows/Linux 上保持自定义下拉菜单，
+   对其高度、字号与内边距做跨平台对齐。 */
+.system-sidebar-layout .network-select.dropdown-select-trigger {
+  min-height: 22px;
+  height: 22px;
+  padding: 0 6px;
+  font-size: 10px;
+  gap: 4px;
+}
+
+.system-sidebar-layout .network-select.dropdown-select-trigger .dropdown-select-arrow {
   font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* macOS 上 system sidebar 的 network-select 采用统一单框样式，
+   去除原生 menulist 重合边框，右侧保留 subtle 下拉箭头。 */
+.system-sidebar-layout .network-select.ft-select-shell {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  height: 22px;
+  box-sizing: border-box;
+}
+
+.system-sidebar-layout .network-select.ft-select-shell select {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  padding: 0 16px 0 6px !important;
+  color: inherit;
+  font: inherit;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+
+.system-sidebar-layout .network-select.ft-select-shell .ft-select-shell__icon {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: var(--text-muted);
+  pointer-events: none;
 }
 
 .network-history {
