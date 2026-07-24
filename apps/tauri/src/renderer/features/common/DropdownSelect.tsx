@@ -28,6 +28,7 @@ export function DropdownSelect({
   disabled,
   autoFocus,
   menuWidth = 'trigger',
+  align = 'auto',
   onKeyDown
 }: {
   value: string
@@ -38,6 +39,7 @@ export function DropdownSelect({
   disabled?: boolean
   autoFocus?: boolean
   menuWidth?: 'trigger' | 'auto'
+  align?: 'left' | 'right' | 'auto'
   onKeyDown?: (event: ReactKeyboardEvent<HTMLElement>) => void
 }) {
   const [open, setOpen] = useState(false)
@@ -118,7 +120,10 @@ export function DropdownSelect({
     const top = rect.bottom + 4
     const minWidth = menuWidth === 'trigger' ? rect.width : menuRect.width
     const maxLeft = Math.max(viewportMargin, window.innerWidth - minWidth - viewportMargin)
-    const left = Math.min(maxLeft, Math.max(viewportMargin, rect.left))
+    const shouldAlignRight =
+      align === 'right' || (align === 'auto' && rect.left + minWidth > window.innerWidth - viewportMargin)
+    const idealLeft = shouldAlignRight ? rect.right - minWidth : rect.left
+    const left = Math.min(maxLeft, Math.max(viewportMargin, idealLeft))
     const maxTop = Math.max(viewportMargin, window.innerHeight - menuRect.height - viewportMargin)
 
     setResolvedStyle({
@@ -126,7 +131,7 @@ export function DropdownSelect({
       top: Math.min(maxTop, top),
       minWidth
     })
-  }, [open, options, menuWidth])
+  }, [open, options, menuWidth, align])
 
   const handleSelect = (optionValue: string) => {
     onChange(optionValue)

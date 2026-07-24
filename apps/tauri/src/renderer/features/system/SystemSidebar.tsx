@@ -613,6 +613,7 @@ function NetworkPanel({ metrics }: { metrics?: SystemMetrics }) {
         </div>
         <DropdownSelect
           className="network-select"
+          align="right"
           value={selectedInterface}
           options={interfaceOptions.map((name) => ({
             value: name,
