@@ -1,3 +1,4 @@
+import { VerticalScrollbar } from './VerticalScrollbar'
 import {
   useCallback,
   useEffect,
@@ -199,6 +200,7 @@ export function DropdownSelect({
           ) : null}
         </button>
       ))}
+      <VerticalScrollbar scrollRef={menuRef} />
     </div>
   )
 
