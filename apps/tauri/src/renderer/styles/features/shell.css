@@ -521,20 +521,41 @@
   color: var(--text-muted);
 }
 
-/* macOS 上 system sidebar 的 network-select 恢复为真正原生 <select> 外观，
-   隐藏 ft-select-shell 的自定义 material 箭头。 */
+/* macOS 上 system sidebar 的 network-select 采用统一单框样式，
+   去除原生 menulist 重合边框，右侧保留 subtle 下拉箭头。 */
+.system-sidebar-layout .network-select.ft-select-shell {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
 .system-sidebar-layout .network-select.ft-select-shell select {
-  appearance: auto;
-  -webkit-appearance: menulist;
-  background: transparent;
-  border: none;
-  padding-right: 4px !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  padding: 0 16px 0 6px !important;
   color: inherit;
+  font: inherit;
   height: 100%;
+  width: 100%;
+  cursor: pointer;
 }
 
 .system-sidebar-layout .network-select.ft-select-shell .ft-select-shell__icon {
-  display: none;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: var(--text-muted);
+  pointer-events: none;
 }
 
 .network-history {
