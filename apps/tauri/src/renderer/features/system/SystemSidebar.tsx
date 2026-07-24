@@ -3,7 +3,6 @@ import type { ConnectionProfile, NetworkSamplePoint, SessionSnapshot, SystemMetr
 import { copyText, hasSelectedText } from '../../app/app-utils'
 import { t } from '../../i18n'
 import { AppIcon } from '../common/AppIcon'
-import { DropdownSelect } from '../common/DropdownSelect'
 import { VerticalScrollbar } from '../common/VerticalScrollbar'
 import { formatSystemLoad } from './system-metric-format'
 
@@ -611,15 +610,17 @@ function NetworkPanel({ metrics }: { metrics?: SystemMetrics }) {
             <strong>{currentRates?.rx ?? '0B'}</strong>
           </span>
         </div>
-        <DropdownSelect
+        <select
           className="network-select"
           value={selectedInterface}
-          options={interfaceOptions.map((name) => ({
-            value: name,
-            label: name === 'all' ? t.total : name
-          }))}
-          onChange={(value) => setSelectedInterface(value)}
-        />
+          onChange={(event) => setSelectedInterface(event.target.value)}
+        >
+          {interfaceOptions.map((name) => (
+            <option key={name} value={name}>
+              {name === 'all' ? t.total : name}
+            </option>
+          ))}
+        </select>
       </div>
       <div className="network-history">
         <div className="network-scale">
