@@ -510,6 +510,33 @@
   font-size: 12px;
 }
 
+/* system sidebar 的 network-select trigger 在 Windows/Linux 上保持自定义下拉菜单，
+   仅将箭头调整为更贴近原生 <select> 的 subtle 外观。 */
+.system-sidebar-layout .network-select.dropdown-select-trigger {
+  padding-right: 6px;
+}
+
+.system-sidebar-layout .network-select.dropdown-select-trigger .dropdown-select-arrow {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* macOS 上 system sidebar 的 network-select 恢复为真正原生 <select> 外观，
+   隐藏 ft-select-shell 的自定义 material 箭头。 */
+.system-sidebar-layout .network-select.ft-select-shell select {
+  appearance: auto;
+  -webkit-appearance: menulist;
+  background: transparent;
+  border: none;
+  padding-right: 4px !important;
+  color: inherit;
+  height: 100%;
+}
+
+.system-sidebar-layout .network-select.ft-select-shell .ft-select-shell__icon {
+  display: none;
+}
+
 .network-history {
   display: grid;
   grid-template-columns: 38px minmax(0, 1fr);
