@@ -206,10 +206,12 @@ export function DropdownSelect({
           role="menuitem"
           type="button"
         >
-          <span>{option.label}</span>
-          {option.value === value ? (
-            <span className="material-symbols-outlined dropdown-select-check">check</span>
-          ) : null}
+          <span className="dropdown-select-check-slot">
+            {option.value === value ? (
+              <span className="material-symbols-outlined dropdown-select-check">check</span>
+            ) : null}
+          </span>
+          <span className="dropdown-select-label">{option.label}</span>
         </button>
       ))}
     </div>
